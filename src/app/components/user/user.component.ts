@@ -10,15 +10,14 @@ import { DataService } from '../../services/data.service';
 export class UserComponent implements OnInit {
   name: string = 'John Doe';
 
-  //constructor() {
-    constructor(private dataService: DataService) {
-      console.log('UserComponent.constructor ... start ');
-//    this.dataService.getPosts().subscribe((posts)) => {
-//      console.log(posts);
-//    });
-    //this.dataService.getPosts();
-    //let ds:DataService = new DataService();
-
+  constructor(private dataService: DataService) {
+    console.log('UserComponent.constructor ... start ');
+    dataService.getJSON().subscribe(data => {
+      console.log('... data ... start2');
+      console.log(data);
+      console.log('... data ... done2');
+    })
+    console.log('DataService.constructor ... done');
     console.log('UserComponent.constructor ... done');
   }
 
