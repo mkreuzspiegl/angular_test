@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../services/data.service';
+//import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-user',
@@ -7,8 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserComponent implements OnInit {
   name: string = 'John Doe';
-  constructor() {
-    console.log('constructor ...');
+
+  //constructor() {
+    constructor(private dataService: DataService) {
+      console.log('UserComponent.constructor ... start ');
+//    this.dataService.getPosts().subscribe((posts)) => {
+//      console.log(posts);
+//    });
+    //this.dataService.getPosts();
+    //let ds:DataService = new DataService();
+
+    console.log('UserComponent.constructor ... done');
   }
 
   ngOnInit() {
@@ -16,36 +27,3 @@ export class UserComponent implements OnInit {
   }
 
 }
-export interface Category {
-  prop: number;
-  name: string;
-}
-export class Post {
-  category: Category[];
-  constructor(obj: Category[]) {
-    this.category = obj;// as Category[];
-    console.log(this.category[0].name);
-  }
-  print() {
-    console.log(this.category);
-  }
-}
-export class Post2 extends Post {
-  printMe() {
-    console.log(this.category);
-  }
-}
-let json =
-  [
-    {
-      "prop": 1, "name": "cat1"
-    },
-    {
-      "prop": 2, "name": "cat2", "and": "more"
-    }
-  ];
-let post2 = new Post2(json);
-let post = post2 as Post;
-post2.printMe();
-post.print();
-console.log(post);
