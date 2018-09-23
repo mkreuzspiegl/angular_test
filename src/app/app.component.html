@@ -1,1 +1,10 @@
 <app-user></app-user>
+
+<br>
+Time: {{ dataService.end - dataService.start}}<br>
+<br>
+<table>
+    <tr *ngFor="let line of dataService.data$"> 
+        <td *ngFor="let item of line">{{item.id}} => {{ item.name }}</td>
+    </tr>
+</table>

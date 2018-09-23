@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../services/data.service';
-//import { DataService } from '../../services/data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-user',
@@ -8,21 +8,22 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  name: string = 'John Doe';
+  name: string; // = 'John Doe';
+  json$: Object;
 
   constructor(private dataService: DataService) {
-    console.log('UserComponent.constructor ... start ');
-    dataService.getJSON().subscribe(data => {
-      console.log('... data ... start2');
-      console.log(data);
-      console.log('... data ... done2');
-    })
-    console.log('DataService.constructor ... done');
-    console.log('UserComponent.constructor ... done');
+    dataService.getComments().subscribe(data => {
+    });
+    console.log('10 user.constructor ... done');
   }
 
   ngOnInit() {
-    console.log('ngOnInit ...');
+    // Daten werden beim Initialisieren der Komponente geladen
+    this.dataService.getPhotos().subscribe(
+      data => {
+        this.json$ = data;
+      }
+    );
   }
 
 }
